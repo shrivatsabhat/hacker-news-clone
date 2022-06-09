@@ -1,0 +1,14 @@
+.link {
+  &:hover {
+    color: black;
+  }
+  text-decoration: none;
+  cursor: pointer;
+}
+
+[data-type="small"] {
+  &:hover {
+    color: grey;
+    text-decoration: underline;
+  }
+}

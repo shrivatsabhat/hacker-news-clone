@@ -1,0 +1,14 @@
+.list {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+
+  border-bottom: 8px solid grey;
+  align-self: center;
+}

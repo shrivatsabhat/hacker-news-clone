@@ -1,0 +1,9 @@
+.story {
+  display: flex;
+  flex-direction: column;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}

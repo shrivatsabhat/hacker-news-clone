@@ -1,0 +1,31 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ul {
+  display: flex;
+  gap: 0rem;
+  li {
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    &::after {
+      content: attr(data-seperator);
+      margin: 0 0.5rem;
+    }
+    &:last-child::after {
+      content: "";
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  &_active {
+    color: black;
+    text-decoration: underline;
+  }
+}
