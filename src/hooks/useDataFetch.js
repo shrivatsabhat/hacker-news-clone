@@ -8,7 +8,7 @@ const useDataFetcher = (type) => {
   useEffect(() => {
     setIsLoading(true);
     getStories(type)
-      .then((stories) => {
+      .then(({ stories }) => {
         setStories(stories);
         setIsLoading(false);
       })

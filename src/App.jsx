@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ErrorPage from "./pages/Error";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -9,7 +9,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Navigate to="/top" />} />
+
           <Route path="/:type" element={<Posts />} />
 
           {/* Using path="*"" means "match anything", so this route

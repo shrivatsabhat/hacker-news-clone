@@ -1,6 +1,6 @@
 import styles from "./story.module.scss";
 import Text from "../../atoms/Text";
-import { getDomainFromUrl, getTimeFormated } from "../../utils/apis";
+import { getDomainFromUrl, getUnixTimeDiffrence } from "../../utils/apis";
 import Link from "../../molecules/Link";
 
 const Story = (props) => {
@@ -17,7 +17,7 @@ const Story = (props) => {
       </div>
       <div className={styles.meta}>
         <Text size="small">
-          {score} point by {by} {getTimeFormated(time)}
+          {score} point by {by} {getUnixTimeDiffrence(time)}
         </Text>
       </div>
     </div>

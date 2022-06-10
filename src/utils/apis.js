@@ -1,6 +1,12 @@
 import axios from "axios";
 import { BASE_API_URL, LINKS } from "./constants";
 
+export const getStorisOfType = async (type) =>
+  await axios.get(`${BASE_API_URL}/${type}stories.json`);
+
+export const getRange = async (stories, start = 0, end) =>
+  stories.slice(start, end || stories.length);
+
 export const getStory = async (id) => {
   try {
     const story = await axios.get(`${BASE_API_URL}/item/${id}.json`);
@@ -16,7 +22,7 @@ export const getStories = async (type) => {
       `${BASE_API_URL}/${type}stories.json`
     );
     const stories = await Promise.all(storyIds.slice(0, 30).map(getStory));
-    return stories;
+    return { stories, storyIds };
   } catch (error) {
     console.log("Error while getting list of stories.");
   }
@@ -43,4 +49,33 @@ export const getTimeFormated = (time) => {
         " minutes ago"
       : Math.abs(timeDifference) + " hours ago";
   return getStoryTime;
+};
+
+export const getUnixTimeDiffrence = (unixTime) => {
+  let currentUnixTime = new Date().getTime() / 1000;
+
+  // get second difference between current time and time of story
+  const timeDifference = currentUnixTime - unixTime;
+  const timeInMinutes = timeDifference / 60;
+  const timeInHours = timeInMinutes / 60;
+  const timeInDays = timeInHours / 24;
+  const timeInWeeks = timeInDays / 7;
+  const timeInMonths = timeInWeeks / 4;
+  const timeInYears = timeInMonths / 12;
+
+  if (timeInYears > 1) {
+    return `${Math.floor(timeInYears)} years ago`;
+  } else if (timeInMonths > 1) {
+    return `${Math.floor(timeInMonths)} months ago`;
+  } else if (timeInWeeks > 1) {
+    return `${Math.floor(timeInWeeks)} weeks ago`;
+  } else if (timeInDays > 1) {
+    return `${Math.floor(timeInDays)} days ago`;
+  } else if (timeInHours > 1) {
+    return `${Math.floor(timeInHours)} hours ago`;
+  } else if (timeInMinutes > 1) {
+    return `${Math.floor(timeInMinutes)} minutes ago`;
+  } else {
+    return `${Math.floor(timeDifference)} seconds ago`;
+  }
 };

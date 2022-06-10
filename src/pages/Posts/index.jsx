@@ -11,7 +11,6 @@ const Posts = (props) => {
   const navigate = useNavigate();
   if (![...getLinkPaths].includes(param.type)) navigate("/");
   const { isLoading, stories } = useDataFetcher(param.type);
-  console.log(param, props, isLoading, stories);
   return (
     <section>
       {isLoading ? (
@@ -19,10 +18,10 @@ const Posts = (props) => {
       ) : (
         <div>
           {stories.map(({ data: story }, idx) => (
-            <div className={styles.list}>
+            <div className={styles.list} key={story.id}>
               <Text size="medium">{idx + 1}.</Text>
               <div className={styles.triangle} />
-              <Story {...story} key={story.id} />
+              <Story {...story} />
             </div>
           ))}
         </div>
